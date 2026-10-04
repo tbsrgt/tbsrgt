@@ -1,2 +1,4 @@
 _build/fonts/
 .venv/
+_build/preview.html
+_build/shots/
