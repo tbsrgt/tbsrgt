@@ -443,6 +443,28 @@ def services():
     return card(h, hl + "".join(out), css, bg=PAPER, label=("(03)", "Services", "Ce que je fais"))
 
 
+def francemcp():
+    h = 340
+    p, pw = pill(40, 100, "Serveur MCP · open source · zéro clé API", INK, CREAM, 12, 36, delay=.1)
+    title = f'<g class="fade" style="animation-delay:.2s">{text(40, 212, "france-mcp", "BG8", 78, INK, ls=-0.04)}</g>'
+    title += underline(44, 44 + F["BG8"].width("france", 78, -0.04) - 8, 232, TOMATO, .7, 7)
+    sub = (f'<g class="fade" style="animation-delay:.35s">'
+           + text(40, 276, "L'État français branché sur l'IA : 19 outils sur", "DM", 21, INK)
+           + text(40, 304, "Sirene, BOAMP, DVF, cadastre, Géorisques, DPE…", "DM", 21, MUTED) + "</g>")
+    tx, ty, tw = 640, 104, 520
+    cmds = ["claude mcp add france -- npx -y \\", "  github:tbsrgt/france-mcp"]
+    term = (f'<g class="fade" style="animation-delay:.5s">'
+            f'<rect x="{tx}" y="{ty}" width="{tw}" height="170" rx="18" fill="{INK}"/>'
+            f'<circle cx="{tx + 24}" cy="{ty + 24}" r="5" fill="{TOMATO}"/><circle cx="{tx + 42}" cy="{ty + 24}" r="5" fill="{BUTTER}"/>'
+            f'<circle cx="{tx + 60}" cy="{ty + 24}" r="5" fill="{PINK}"/>'
+            + "".join(text(tx + 24, ty + 68 + i * 32, c, "JB", 15.5, CREAM) for i, c in enumerate(cmds))
+            + text(tx + 24, ty + 146, "2 400 / 2 400 identiques à la source", "JB", 15.5, BUTTER)
+            + f'<rect class="pulse" x="{tx + 24 + F["JB"].width("2 400 / 2 400 identiques à la source", 15.5) + 6:.1f}" y="{ty + 146 - 14}" width="9" height="18" fill="{TOMATO}"/>'
+            + "</g>")
+    foot = small(640, 310, "github.com/tbsrgt/france-mcp", MUTED) + small(W - 40, 310, "MIT · Node", MUTED, "end")
+    return card(h, p + title + sub + term + foot, bg=PAPER, label=("(04)", "Open source", "Projet phare"))
+
+
 def opensource():
     h = 320
     p, pw = pill(40, 100, "Plugin Claude Code · gratuit", TOMATO, CREAM, 12, 36, delay=.1)
@@ -460,7 +482,7 @@ def opensource():
             + f'<rect class="pulse" x="{tx + 24 + F["JB"].width(cmds[-1], 15.5) + 6:.1f}" y="{ty + 72 + 36 - 14}" width="9" height="18" fill="{TOMATO}"/>'
             + "</g>")
     foot = small(640, 290, "github.com/tbsrgt/claude-ovh-dns", MUTED) + small(W - 40, 290, "MIT · Python", MUTED, "end")
-    return card(h, p + title + sub + term + foot, bg=CREAM, label=("(04)", "Open source", "Mes outils, en libre accès"))
+    return card(h, p + title + sub + term + foot, bg=CREAM, label=("(04)", "Open source", "Et aussi"))
 
 
 def stack():
@@ -538,7 +560,7 @@ def main():
     for old in OUT.glob("*.svg"):
         old.unlink()
     cards = {"hero": hero, "marquee": marquee, "oculot": oculot, "nulll": nulll, "services": services,
-             "opensource": opensource, "stack": stack, "contact": contact}
+             "francemcp": francemcp, "opensource": opensource, "stack": stack, "contact": contact}
     for name, fn in cards.items():
         (OUT / f"{name}.svg").write_text(fn())
     for name, (label, kind) in BUTTONS.items():

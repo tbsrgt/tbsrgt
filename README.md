@@ -14,6 +14,10 @@
 
 <img src="./assets/services.svg" width="100%" alt="Services — 01 Sites & refontes · 02 UX/UI & motion · 03 Logiciels sur mesure · 04 Marque & communauté · 05 Automatisations & IA" />
 
+<a href="https://github.com/tbsrgt/france-mcp">
+  <img src="./assets/francemcp.svg" width="100%" alt="Open source — france-mcp, l'État français branché sur l'IA : serveur MCP open source, 19 outils sans clé API sur Sirene, BOAMP, DVF, cadastre, Géorisques, DPE, Caparéseau, data.gouv. 2 400 / 2 400 réponses identiques à la source officielle. claude mcp add france -- npx -y github:tbsrgt/france-mcp" />
+</a>
+
 <a href="https://github.com/tbsrgt/claude-ovh-dns">
   <img src="./assets/opensource.svg" width="100%" alt="Open source — ovh-dns, plugin Claude Code gratuit : pointez un domaine OVH vers Vercel en trois commandes, sans jamais casser vos e-mails. /plugin marketplace add tbsrgt/claude-ovh-dns puis /plugin install ovh-dns@tbsrgt" />
 </a>
