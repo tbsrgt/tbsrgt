@@ -1,39 +1,29 @@
-<a href="https://oculot.studio">
-  <img src="./assets/hero.svg" width="100%" alt="Tobias Ringot — Web designer & développeur à Aix-en-Provence, co-fondateur d'Oculot Studio. Je conçois des sites qui vendent, des marques qui fédèrent et des communautés qui reviennent." />
+<a href="https://github.com/tbsrgt">
+  <img src="./assets/hero.svg" width="100%" alt="Tobias Ringot, entrepreneur à Aix-en-Provence. Je crée des sites internet avec Oculot Studio, je fais courir Aix avec NULLL.CLUB et je construis des logiciels créatifs avec Ooone. Suivre sur GitHub." />
 </a>
 
-<img src="./assets/marquee.svg" width="100%" alt="Refontes · Sites qui vendent · UX/UI · Motion · Marque · Communauté · Sur-mesure" />
-
-<a href="https://oculot.studio">
-  <img src="./assets/oculot.svg" width="100%" alt="Oculot Studio — Studio de refonte de sites internet à Aix-en-Provence, fondé avec Tom et Eliott. Des sites rapides, beaux sur mobile et pensés pour ramener des clients. Audit gratuit de votre site, refonte dès 1 500 € HT, PACA et à distance. oculot.studio" />
+<a href="https://tobiasringot.vercel.app">
+  <img src="./assets/intro.svg" width="100%" alt="Ce que je construis : un studio de refonte de sites monté à trois, un social run club à Aix et une suite de logiciels créatifs. Le reste du temps, je publie des outils libres sur GitHub." />
 </a>
 
-<a href="https://nulll.club">
-  <img src="./assets/nulll.svg" width="100%" alt="NULLL.CLUB — Social running club à Aix-en-Provence. « On vient pour courir. On revient pour les gens. » Chaque samedi 8h30, 5 à 6 km, gratuit, allure conversation. Fondé et animé par moi." />
+<p align="center"><a href="https://oculot.studio"><img src="./assets/oculot.svg" width="49.5%" alt="Oculot Studio : un studio de refonte de sites internet, monté à trois avec Tom et Eliott. oculot.studio" /></a><a href="https://nulll.club"><img src="./assets/nulll.svg" width="49.5%" alt="NULLL.CLUB : un social run club à Aix-en-Provence. La course sert de prétexte, le but est de se rencontrer. nulll.club" /></a></p>
+
+<p align="center"><a href="https://ooone.vercel.app"><img src="./assets/ooone.svg" width="49.5%" alt="Ooone : une suite créative complète, photo, retouche, design, rendu d'architecture, vidéo et 3D. Bêta fermée." /></a><a href="https://ooone.vercel.app"><img src="./assets/apps.svg" width="49.5%" alt="Les apps d'Ooone : Rawww et Layer en bêta, Reeel, Wire, Arch et Blob 3D à venir. Simple by default. Deep when you want." /></a></p>
+
+<a href="https://github.com/tbsrgt?tab=repositories">
+  <img src="./assets/opensource.svg" width="100%" alt="Open source : des outils libres, pour tout le monde. Plugins Claude Code, serveurs MCP et logiciels. Une étoile sur un dépôt m'aide à continuer." />
 </a>
 
-<img src="./assets/services.svg" width="100%" alt="Services — 01 Sites & refontes · 02 UX/UI & motion · 03 Logiciels sur mesure · 04 Marque & communauté · 05 Automatisations & IA" />
+<p align="center"><a href="https://github.com/tbsrgt/mue"><img src="./assets/depot-mue.svg" width="33%" alt="mue : réécrit du COBOL en Java et prouve que les deux donnent exactement les mêmes résultats. TypeScript, AGPL-3.0." /></a><a href="https://github.com/tbsrgt/france-mcp"><img src="./assets/depot-france-mcp.svg" width="33%" alt="france-mcp : l'État français branché sur l'IA, 19 outils sans clé API. JavaScript, MIT." /></a><a href="https://github.com/tbsrgt/claude-ovh-dns"><img src="./assets/depot-claude-ovh-dns.svg" width="33%" alt="claude-ovh-dns : pointez un domaine OVH vers Vercel en trois commandes, sans casser vos e-mails. Python, MIT." /></a></p>
 
-<a href="https://github.com/tbsrgt/france-mcp">
-  <img src="./assets/francemcp.svg" width="100%" alt="Open source — france-mcp, l'État français branché sur l'IA : serveur MCP open source, 19 outils sans clé API sur Sirene, BOAMP, DVF, cadastre, Géorisques, DPE, Caparéseau, data.gouv. 2 400 / 2 400 réponses identiques à la source officielle. claude mcp add france -- npx -y github:tbsrgt/france-mcp" />
-</a>
-
-<a href="https://github.com/tbsrgt/claude-ovh-dns">
-  <img src="./assets/opensource.svg" width="100%" alt="Open source — ovh-dns, plugin Claude Code gratuit : pointez un domaine OVH vers Vercel en trois commandes, sans jamais casser vos e-mails. /plugin marketplace add tbsrgt/claude-ovh-dns puis /plugin install ovh-dns@tbsrgt" />
-</a>
-
-<img src="./assets/stack.svg" width="100%" alt="Outils — Next.js, React, TypeScript, CSS Modules, Motion, Lenis, Supabase, Vercel, Figma, Remotion, Python, Playwright" />
-
-<a href="mailto:bonjour@oculot.studio">
-  <img src="./assets/contact.svg" width="100%" alt="Contact — Parlons-en. Un site, une refonte, une marque à lancer ? Écrivez-nous : bonjour@oculot.studio" />
+<a href="https://github.com/tbsrgt">
+  <img src="./assets/suivre.svg" width="100%" alt="Suivez la suite. Nouvelles apps Ooone, outils libres, sites du studio, sorties du club : je publie tout ici, au fur et à mesure." />
 </a>
 
 <p align="center">
-  <a href="mailto:bonjour@oculot.studio"><img src="./assets/btn-contact.svg" height="42" alt="Me contacter" /></a>
-  <a href="https://oculot.studio"><img src="./assets/btn-oculot.svg" height="42" alt="Oculot Studio" /></a>
-  <a href="https://nulll.club"><img src="./assets/btn-nulll.svg" height="42" alt="NULLL.CLUB" /></a>
+  <a href="https://github.com/tbsrgt"><img src="./assets/btn-suivre.svg" height="42" alt="Suivre sur GitHub" /></a>
   <a href="https://tobiasringot.vercel.app"><img src="./assets/btn-portfolio.svg" height="42" alt="Portfolio" /></a>
-  <a href="https://www.linkedin.com/in/tobiasringot/"><img src="./assets/btn-linkedin.svg" height="42" alt="LinkedIn" /></a>
+  <a href="https://tobiasringot.vercel.app/actus"><img src="./assets/btn-journal.svg" height="42" alt="Journal" /></a>
   <a href="https://www.instagram.com/tbsrgt/"><img src="./assets/btn-instagram.svg" height="42" alt="Instagram @tbsrgt" /></a>
-  <a href="https://www.behance.net/tobiasringot"><img src="./assets/btn-behance.svg" height="42" alt="Behance" /></a>
+  <a href="https://www.linkedin.com/in/tobiasringot/"><img src="./assets/btn-linkedin.svg" height="42" alt="LinkedIn" /></a>
 </p>
