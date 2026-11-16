@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8" />
+<title>Bannières LinkedIn</title>
+<style>
+  @font-face { font-family: IS; src: url(../fonts/InstrumentSans.ttf); font-weight: 400 700; }
+  @font-face { font-family: JB; src: url(../fonts/JetBrainsMono.ttf); font-weight: 400 700; }
+  :root {
+    --cadre: #0c0c0b; --clair: #ebeae6; --sombre: #151513; --encre: #141413;
+    --gris: #77746d; --creme: #f2edc4; --rouge: #d71921;
+    --m: url(../../../Documents/ChatGPT/portfolio/public/media);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #444; font-family: IS, sans-serif; letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; }
+  .b { width: 1584px; height: 396px; position: relative; overflow: hidden; margin: 0 0 20px; }
+  .mono { font-family: JB, monospace; font-weight: 500; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+  .trame { background-image: radial-gradient(circle, rgba(0,0,0,.2) 1.1px, transparent 1.6px); background-size: 28px 28px; }
+  .trame-s { background-image: radial-gradient(circle, rgba(255,255,255,.12) 1.1px, transparent 1.6px); background-size: 28px 28px; }
+  h1, h2 { font-weight: 500; letter-spacing: -0.045em; line-height: .98; }
+  .pastille { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px; border-radius: 99px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; }
+  .noire { background: var(--encre); color: #fff; }
+  .blanche { background: #fff; color: var(--encre); }
+  .verre { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.22); }
+  .contour { border: 1px solid rgba(0,0,0,.18); color: var(--encre); }
+  .contour-s { border: 1px solid rgba(255,255,255,.25); color: #fff; }
+  .px { position: absolute; display: grid; grid-template-columns: repeat(var(--c), 22px); }
+  .px i { width: 22px; height: 22px; }
+  .rangee { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* 1 — Oculot Studio, sites sur MacBook + iPhone */
+  .b1 { background: var(--sombre); color: #fff; }
+  .b1 .txt { position: absolute; left: 470px; top: 58px; width: 600px; }
+  .b1 .logo { height: 50px; display: block; margin-bottom: 22px; }
+  .b1 h2 { font-size: 44px; }
+  .b1 p { margin-top: 14px; font-size: 18px; color: rgba(255,255,255,.72); line-height: 1.45; max-width: 46ch; }
+  .b1 .rangee { margin-top: 22px; }
+  .mac { position: absolute; left: 1090px; top: 60px; width: 400px; }
+  .mac .ecran { height: 262px; border: 10px solid #0d0d0d; border-bottom-width: 18px; border-radius: 16px; overflow: hidden; outline: 1.5px solid #767a7d; background: #fff; }
+  .mac .ecran img { width: 100%; display: block; }
+  .mac .base { height: 12px; margin: 0 -34px; background: linear-gradient(#a3a6a8, #6a6d70); border-radius: 0 0 14px 14px; }
+  .tel { position: absolute; left: 1410px; top: 104px; width: 122px; height: 250px; border-radius: 26px; background: #010101; border: 2px solid #342c3f; padding: 6px; }
+  .tel .ecran { width: 100%; height: 100%; border-radius: 20px; overflow: hidden; background: #fff; }
+  .tel .ecran img { width: 100%; display: block; margin-top: -10px; }
+  .tel::after { content: ""; position: absolute; top: 14px; left: 50%; width: 40px; height: 12px; margin-left: -20px; border-radius: 6px; background: #010101; }
+
+  /* 2 — Business × IA, clair */
+  .b2 { background: var(--clair); color: var(--encre); }
+  .b2 .txt { position: absolute; left: 470px; top: 58px; width: 700px; }
+  .b2 h2 { font-size: 60px; }
+  .b2 h2 em { font-style: normal; color: var(--gris); }
+  .b2 p { margin-top: 16px; font-size: 19px; color: var(--gris); line-height: 1.45; max-width: 50ch; }
+  .b2 .rangee { margin-top: 22px; }
+  .b2 .carte { position: absolute; right: 64px; top: 56px; width: 300px; height: 284px; border-radius: 22px; background: var(--sombre); color: #fff; padding: 26px; }
+  .b2 .carte .logo { height: 34px; margin-bottom: 18px; }
+  .b2 .ligne { display: flex; justify-content: space-between; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.1); font-size: 16px; }
+  .b2 .ligne span:last-child { font-family: JB; font-size: 12px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; padding-top: 3px; }
+
+  /* 3 — nuit étoilée, signature */
+  .b3 { background: #0a0d16 center / cover; color: #fff; }
+  .b3::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,16,32,.5), rgba(12,12,11,.1) 60%, rgba(58,29,14,.55)); }
+  .b3 .txt { position: absolute; left: 0; right: 0; top: 62px; text-align: center; padding-left: 300px; }
+  .b3 h1 { font-size: 92px; }
+  .b3 p { margin-top: 16px; font-size: 20px; color: rgba(255,255,255,.85); }
+  .b3 .rangee { justify-content: center; margin-top: 24px; }
+  .b3 .bas { position: absolute; right: 36px; bottom: 26px; color: rgba(255,255,255,.7); }
+
+  /* 4 — IA concrète : terminal */
+  .b4 { background: var(--sombre); color: #fff; }
+  .b4 .txt { position: absolute; left: 470px; top: 60px; width: 560px; }
+  .b4 h2 { font-size: 54px; }
+  .b4 p { margin-top: 16px; font-size: 18px; color: rgba(255,255,255,.7); line-height: 1.45; }
+  .b4 .rangee { margin-top: 22px; }
+  .term { position: absolute; left: 1060px; top: 56px; width: 470px; height: 284px; border-radius: 20px; background: #0d0d0c; border: 1px solid rgba(255,255,255,.1); padding: 22px 24px; font-family: JB; font-size: 14.5px; line-height: 1.75; color: #e9e7df; }
+  .term .pts { display: flex; gap: 7px; margin-bottom: 16px; }
+  .term .pts i { width: 11px; height: 11px; border-radius: 50%; background: #3a3936; }
+  .term .c { color: var(--creme); }
+  .term .g { color: #8d8a82; }
+  .term .ok { color: #9fd38c; }
+  .term .cur { display: inline-block; width: 9px; height: 17px; background: var(--creme); vertical-align: -3px; }
+
+  /* 5 — icône en points + manifeste */
+  .b5 { background: var(--clair); color: var(--encre); }
+  .b5 .grand { position: absolute; left: 470px; top: 54px; }
+  .b5 h2 { font-size: 74px; }
+  .b5 h2 span { color: var(--gris); }
+  .b5 p { margin-top: 18px; font-size: 19px; color: var(--gris); max-width: 52ch; line-height: 1.45; }
+  .b5 .rangee { margin-top: 22px; }
+  .b5 .marque { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); width: 260px; height: 260px; border-radius: 30px; background: var(--sombre); display: grid; place-items: center; }
+  .b5 .marque img { width: 170px; }
+</style>
+<body>
+
+<!-- 1 -->
+<section class="b b1 trame-s" id="b1">
+  <div class="txt">
+    <img class="logo" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-creme.svg" alt="" />
+    <div class="mono" style="color:rgba(255,255,255,.6);margin-bottom:14px">Studio web · Aix-en-Provence</div>
+    <h2>Des sites qui ramènent des clients.</h2>
+    <p>Refonte, création et développement sur mesure pour les entreprises.</p>
+    <div class="rangee"><span class="pastille blanche">oculot.studio ↗</span><span class="pastille contour-s">Audit gratuit</span></div>
+  </div>
+  <div class="mac"><div class="ecran"><img src="../../../Documents/ChatGPT/portfolio/public/media/oculot/pompom.webp" /></div><div class="base"></div></div>
+  <div class="tel"><div class="ecran"><img src="../../../Documents/ChatGPT/portfolio/public/media/oculot/nulll-m.webp" /></div></div>
+</section>
+
+<!-- 2 -->
+<section class="b b2 trame" id="b2">
+  <div class="txt">
+    <div class="mono" style="color:var(--gris);margin-bottom:16px">Business · IA · Sur mesure</div>
+    <h2>Le web et l'IA,<br /><em>au service de votre business.</em></h2>
+    <p>Sites, logiciels métier et automatisations IA pour faire gagner du temps et des clients aux entreprises.</p>
+  </div>
+  <div class="carte">
+    <img class="logo" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-creme.svg" alt="" />
+    <div class="ligne"><span>Sites & refontes</span><span>01</span></div>
+    <div class="ligne"><span>Logiciels sur mesure</span><span>02</span></div>
+    <div class="ligne"><span>Automatisations IA</span><span>03</span></div>
+    <div class="ligne"><span>Agents & MCP</span><span>04</span></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="b b3" id="b3" style="background-image:url(../../../Documents/ChatGPT/portfolio/public/media/nuit.jpg)">
+  <div class="etoiles"></div>
+  <div class="txt">
+    <div class="mono" style="color:rgba(255,255,255,.75);margin-bottom:14px">Entrepreneur · Cofondateur d'Oculot Studio</div>
+    <h1>Tobias Ringot</h1>
+    <p>Sites, logiciels et IA pour les entreprises qui veulent aller plus vite.</p>
+    <div class="rangee"><span class="pastille blanche">oculot.studio ↗</span><span class="pastille verre">Business · IA · Web</span></div>
+  </div>
+  <div class="bas mono">43°31′ N · 5°27′ E</div>
+</section>
+
+<!-- 4 -->
+<section class="b b4 trame-s" id="b4">
+  <div class="txt">
+    <div class="mono" style="color:rgba(255,255,255,.6);margin-bottom:16px">IA concrète · Open source</div>
+    <h2>L'IA branchée sur votre métier.</h2>
+    <p>Agents, serveurs MCP et automatisations : on connecte l'IA à vos outils et à vos données, pour de vrai.</p>
+    <div class="rangee"><span class="pastille blanche">Oculot Studio</span><span class="pastille contour-s">github.com/tbsrgt ↗</span></div>
+  </div>
+  <div class="term">
+    <div class="pts"><i></i><i></i><i></i></div>
+    <div><span class="g">$</span> <span class="c">claude mcp add france</span> -- npx -y \</div>
+    <div>&nbsp;&nbsp;github:tbsrgt/france-mcp</div>
+    <div class="ok">✓ 19 outils · Sirene, BOAMP, DVF, DPE…</div>
+    <div><span class="g">$</span> <span class="c">/plugin install</span> ovh-dns@tbsrgt</div>
+    <div class="ok">✓ domaine pointé, e-mails intacts</div>
+    <div><span class="g">$</span> <span class="cur"></span></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="b b5 trame" id="b5">
+  <div class="grand">
+    <div class="mono" style="color:var(--gris);margin-bottom:16px">Oculot Studio · Aix-en-Provence</div>
+    <h2>Sites. Logiciels. <span>IA.</span></h2>
+    <p>Un studio monté à trois pour moderniser les entreprises : un site qui vend, des outils qui font gagner du temps.</p>
+    <div class="rangee"><span class="pastille noire">oculot.studio ↗</span><span class="pastille contour">Parlons de votre projet</span></div>
+  </div>
+  <div class="marque"><img src="../../../Documents/ChatGPT/portfolio/public/media/oculot-mark-creme.svg" alt="" /></div>
+</section>
+
+<script>
+  // étoiles de la bannière 3
+  const e = document.querySelector('.b3 .etoiles');
+  let s = 7; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 70; i++) {
+    const d = document.createElement('i');
+    const t = [1.6, 2, 2.6][Math.floor(r() * 3)];
+    d.style.cssText = `position:absolute;left:${r() * 1584}px;top:${r() * 260}px;width:${t}px;height:${t}px;border-radius:50%;background:#fff;opacity:${.35 + r() * .55}`;
+    e.appendChild(d);
+  }
+  // pixels qui mangent un coin
+  function pixels(sec, coin, w, h, pal, seed) {
+    let z = seed; const rr = () => (z = (z * 9301 + 49297) % 233280) / 233280;
+    const c = Math.ceil(w / 22), l = Math.ceil(h / 22);
+    const g = document.createElement('div'); g.className = 'px'; g.style.setProperty('--c', c);
+    g.style[coin.includes('d') ? 'right' : 'left'] = 0; g.style[coin[0] === 'b' ? 'bottom' : 'top'] = 0;
+    for (let j = 0; j < l; j++) for (let i = 0; i < c; i++) {
+      const fx = coin.includes('d') ? (c - 1 - i) / c : i / c, fy = coin[0] === 'b' ? (l - 1 - j) / l : j / l;
+      const p = 1 - (fx / .5 + fy / .55); const k = document.createElement('i');
+      if (p > 0 && rr() < p * 1.25) k.style.background = pal[Math.floor(rr() * pal.length)];
+      g.appendChild(k);
+    }
+    document.getElementById(sec).appendChild(g);
+  }
+  pixels('b1', 'hg', 220, 132, ['#0c0c0b', '#232321', '#2f2e2b'], 3);
+  pixels('b2', 'hg', 220, 132, ['#0c0c0b', '#2b2a27', '#5d5b56', '#cfcdc7'], 5);
+  pixels('b3', 'hd', 260, 132, ['#0c0c0b', '#0c0c0b', '#1d1d1b'], 9);
+  pixels('b4', 'bd', 260, 132, ['#0c0c0b', '#232321', '#2f2e2b'], 11);
+  pixels('b5', 'hg', 220, 132, ['#0c0c0b', '#2b2a27', '#5d5b56', '#cfcdc7'], 13);
+</script>
+</body>
+</html>

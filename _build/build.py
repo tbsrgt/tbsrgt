@@ -475,7 +475,7 @@ def sites():
     css.append(f".dmac{{animation:dmac 22s ease-in-out infinite alternate}}@keyframes dmac{{0%,8%{{transform:translateY(0)}}92%,100%{{transform:translateY(-{ph_img - sh}px)}}}}")
     body.append(f'<g class="flotte" style="animation-duration:7s">'
                 f'<rect x="{sx - 10}" y="{sy - 10}" width="{sw + 20}" height="{sh + 26}" rx="16" fill="#0d0d0d" stroke="#767a7d" stroke-width="1.5"/>'
-                f'<g clip-path="url(#ecran)"><g class="dmac">{image(sx, sy, sw, ph_img, pw, "meet")}</g></g>'
+                f'<g clip-path="url(#ecran)">{image(sx, sy, sw, ph_img, pw, "meet")}</g>'
                 f'<rect x="{sx + sw / 2 - 26}" y="{sy - 10}" width="52" height="9" rx="4" fill="#0d0d0d"/>'
                 f'<path d="M{sx - 34} {sy + sh + 16} h{sw + 68} l-10 12 h-{sw + 48} z" fill="#83878a"/>'
                 f'<rect x="{sx + sw / 2 - 40}" y="{sy + sh + 16}" width="80" height="5" rx="2.5" fill="#6a6d70"/></g>')
@@ -487,7 +487,7 @@ def sites():
     css.append(f".dtel{{animation:dtel 28s ease-in-out infinite alternate;animation-delay:-6s}}@keyframes dtel{{0%,8%{{transform:translateY(0)}}92%,100%{{transform:translateY(-{nh - th + 12}px)}}}}")
     body.append(f'<g class="flotte" style="animation-duration:6s;animation-delay:-2s">'
                 f'<rect x="{tx}" y="{ty}" width="{tw}" height="{th}" rx="26" fill="#010101" stroke="#342c3f" stroke-width="2"/>'
-                f'<g clip-path="url(#tel)"><g class="dtel">{image(tx + 6, ty + 6, tw - 12, nh, nw, "meet")}</g></g>'
+                f'<g clip-path="url(#tel)">{image(tx + 6, ty + 6, tw - 12, nh, nw, "meet")}</g>'
                 f'<rect x="{tx + tw / 2 - 20}" y="{ty + 14}" width="40" height="12" rx="6" fill="#010101"/></g>')
     leg = (f'<g class="fade" style="animation-delay:.3s">'
            + mono(iw / 2, 456, "Sites réalisés par le studio", GRIS, "middle")

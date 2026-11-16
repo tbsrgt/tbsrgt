@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8" />
+<title>Bannières LinkedIn v2</title>
+<!--
+  Bannières LinkedIn 1584 × 396, DA du portfolio, Oculot Studio en avant.
+  Zone cachée par la photo de profil sur LinkedIn (bureau) : x 40 → 390, y 195 → 396.
+  Rien d'important dedans ; le logo va au-dessus, le texte commence à x = 430.
+-->
+<link rel="stylesheet" href="../../../Documents/ChatGPT/portfolio/node_modules/devices.css/dist/devices.min.css" />
+<style>
+  @font-face { font-family: IS; src: url(../fonts/InstrumentSans.ttf); font-weight: 400 700; }
+  @font-face { font-family: GH; src: url(../fonts/GochiHand-Regular.ttf); }
+  @font-face { font-family: JB; src: url(../fonts/JetBrainsMono.ttf); font-weight: 400 700; }
+  :root { --cadre: #0c0c0b; --clair: #ebeae6; --sombre: #151513; --encre: #141413; --gris: #77746d; --creme: #f2edc4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #555; font-family: IS, sans-serif; letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; }
+  .b { width: 1584px; height: 396px; position: relative; overflow: hidden; margin-bottom: 20px; }
+  .guide .b::after { content: ""; position: absolute; left: 40px; top: 195px; width: 350px; height: 350px; border-radius: 50%; outline: 2px dashed red; }
+  .mono { font-family: JB, monospace; font-weight: 500; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+  .trame { background-image: radial-gradient(circle, rgba(0,0,0,.2) 1.1px, transparent 1.6px); background-size: 28px 28px; }
+  .trame-s { background-image: radial-gradient(circle, rgba(255,255,255,.11) 1.1px, transparent 1.6px); background-size: 28px 28px; }
+  h2 { font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
+  .pastille { display: inline-flex; align-items: center; height: 42px; padding: 0 20px; border-radius: 99px; font-size: 16px; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; }
+  .noire { background: var(--encre); color: #fff; }
+  .blanche { background: #fff; color: var(--encre); }
+  .verre { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.22); }
+  .contour { border: 1px solid rgba(0,0,0,.18); color: var(--encre); }
+  .contour-s { border: 1px solid rgba(255,255,255,.25); color: #fff; }
+  .rangee { display: flex; gap: 10px; align-items: center; }
+  .logo-haut { position: absolute; left: 44px; top: 40px; height: 40px; }
+  .txt { position: absolute; left: 430px; }
+  .px { position: absolute; display: grid; grid-template-columns: repeat(var(--c), 22px); }
+  .px i { width: 22px; height: 22px; }
+
+  /* appareils */
+  .mac { position: absolute; width: var(--w); }
+  .mac .ecran { height: calc(var(--w) * .625); border: 9px solid #0d0d0d; border-bottom-width: 16px; border-radius: 15px; overflow: hidden; outline: 1.5px solid #767a7d; background: #fff; }
+  .mac .ecran img { width: 100%; display: block; }
+  .mac .base { height: 11px; margin: 0 -30px; background: linear-gradient(#b3b6b8, #6a6d70); border-radius: 0 0 14px 14px; }
+  .tel { position: absolute; width: var(--w); height: calc(var(--w) * 2.05); border-radius: 24px; background: #010101; border: 2px solid #342c3f; padding: 6px; box-shadow: 0 30px 50px -20px rgba(0,0,0,.6); }
+  .tel .ecran { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; background: #fff; }
+  .tel .ecran img { width: 100%; display: block; }
+  .tel::after { content: ""; position: absolute; top: 13px; left: 50%; width: 36px; height: 11px; margin-left: -18px; border-radius: 6px; background: #010101; }
+  .nav { position: absolute; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06); }
+  .nav .barre { height: 24px; background: #f1f0ec; display: flex; align-items: center; gap: 5px; padding: 0 10px; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .nav .barre i { width: 7px; height: 7px; border-radius: 50%; background: #d9d7d0; }
+  .nav .barre span { margin-left: 8px; font-family: JB; font-size: 9px; color: #77746d; letter-spacing: .06em; }
+  .nav img { width: 100%; display: block; }
+
+  /* 1 — l'accroche, en sombre, avec les sites */
+  .b1 { background: var(--sombre); color: #fff; }
+  .b1 .txt { top: 64px; }
+  .b1 h2 { font-size: 58px; }
+  .b1 h2 span { color: rgba(255,255,255,.45); }
+  .b1 h2 b { font-weight: 500; color: #fff; position: relative; }
+  .b1 h2 b::after { content: ""; position: absolute; left: 2px; right: 10px; bottom: -6px; height: 3px; border-radius: 2px; background: var(--creme); }
+  .b1 .mono { color: rgba(255,255,255,.6); margin: 30px 0 16px; }
+
+  /* 2 — version claire, trois sites en éventail */
+  .b2 { background: var(--clair); color: var(--encre); }
+  .b2 .txt { top: 76px; width: 520px; }
+  .b2 h2 { font-size: 48px; }
+  .b2 h2 span { color: var(--gris); }
+  .b2 p { margin-top: 16px; font-size: 18px; color: var(--gris); line-height: 1.45; max-width: 44ch; }
+  .b2 .rangee { margin-top: 22px; }
+
+  /* 3 — business et IA */
+  .b3 { background: var(--sombre); color: #fff; }
+  .b3 .txt { top: 70px; width: 700px; }
+  .b3 h2 { font-size: 48px; }
+  .b3 h2 span { color: rgba(255,255,255,.45); }
+  .b3 p { margin-top: 18px; font-size: 18px; color: rgba(255,255,255,.7); line-height: 1.45; max-width: 46ch; }
+  .b3 .carte { position: absolute; right: 60px; top: 52px; width: 400px; border-radius: 22px; background: #1d1d1b; border: 1px solid rgba(255,255,255,.08); padding: 24px 26px 14px; }
+  .b3 .carte .tete { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .b3 .carte .tete img { height: 30px; }
+  .b3 .ligne { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; }
+  .b3 .ligne .mono { font-size: 11px; color: rgba(255,255,255,.45); }
+  .b3 .ligne .etat { font-family: JB; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--creme); }
+
+  /* 4 — moment de marque, nuit étoilée */
+  .b4 { background: #0a0d16 center 70% / cover; color: #fff; }
+  .b4::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,16,32,.45), rgba(12,12,11,.05) 55%, rgba(58,29,14,.6)); }
+  .b4 .txt { left: 0; right: 0; top: 70px; text-align: center; padding-left: 360px; }
+  .b4 .logo { height: 92px; display: block; margin: 0 auto; }
+  .b4 p { margin-top: 22px; font-size: 22px; color: rgba(255,255,255,.88); }
+  .b4 .rangee { justify-content: center; margin-top: 24px; }
+
+  /* 5 — les preuves : trois sites réalisés */
+  .b5 { background: var(--clair); color: var(--encre); }
+  .b5 .txt { top: 58px; width: 360px; }
+  .b5 h2 { font-size: 44px; }
+  .b5 h2 span { color: var(--gris); }
+  .b5 .rangee { margin-top: 24px; }
+  .b5 .site { position: absolute; top: 46px; width: 300px; }
+  .b5 .site .nav { position: relative; }
+  .b5 .site .nav .vue { height: 190px; overflow: hidden; }
+  .b5 .site .leg { margin-top: 14px; display: flex; justify-content: space-between; }
+  .b5 .site .leg b { font-weight: 500; font-size: 16px; }
+  .b5 .site .leg .mono { font-size: 11px; color: var(--gris); padding-top: 4px; }
+
+  /* appareils devices.css, mis à l'échelle */
+  .app { position: absolute; transform-origin: top left; filter: drop-shadow(0 26px 30px rgba(0,0,0,.22)); }
+  .app .device-screen { overflow: hidden; background: #fff; }
+  .app .device-screen img { width: 100%; display: block; }
+
+  /* fenêtres de navigateur superposées (bannière 2) */
+  .fen { position: absolute; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 36px 60px -28px rgba(0,0,0,.42), 0 0 0 1px rgba(0,0,0,.07); }
+  .fen .barre { height: 28px; background: #f6f5f2; border-bottom: 1px solid rgba(0,0,0,.07); display: flex; align-items: center; padding: 0 12px; gap: 6px; position: relative; }
+  .fen .barre i { width: 9px; height: 9px; border-radius: 50%; background: #dcdad3; }
+  .fen .barre span { position: absolute; left: 50%; transform: translateX(-50%); height: 17px; padding: 0 12px; border-radius: 6px; background: #ecebe6; font-family: JB; font-size: 9.5px; letter-spacing: .04em; color: #77746d; display: flex; align-items: center; }
+  .fen img { width: 100%; display: block; aspect-ratio: 1.6; object-fit: cover; object-position: top; }
+  .fen.arriere { filter: saturate(.9) brightness(.97); }
+
+  /* bannière 2 : fenêtres empilées en biais qui débordent, comme la bannière actuelle */
+  .pile { position: absolute; inset: 0; perspective: 1600px; }
+  .pile .fen { transform: rotateY(-9deg) rotateX(3deg) rotate(-4deg); transform-origin: left center; }
+  .note { position: absolute; font-family: GH; font-size: 34px; color: var(--encre); transform: rotate(-7deg); white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+  .note svg { width: 26px; height: 26px; }
+</style>
+<body>
+
+<!-- 1 -->
+<section class="b b1 trame-s" id="b1">
+  <img class="logo-haut" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-creme.svg" alt="" />
+  <div class="txt">
+    <h2>Vous avez déjà un site.<br /><span>On en fait un qui </span><b>vend.</b></h2>
+    <div class="mono">Oculot Studio · Refonte de sites · Aix-en-Provence</div>
+    <div class="rangee"><span class="pastille blanche">oculot.studio ↗</span><span class="pastille contour-s">Audit gratuit de votre site</span></div>
+  </div>
+  <div class="mac" style="--w:400px;left:1080px;top:56px"><div class="ecran"><img src="media/parentez-desktop.webp" /></div><div class="base"></div></div>
+  <div class="tel" style="--w:118px;left:1418px;top:118px"><div class="ecran"><img src="../../../Documents/ChatGPT/portfolio/public/media/oculot/pompom-m.webp" /></div></div>
+</section>
+
+<!-- 2 -->
+<section class="b b2 trame" id="b2">
+  <img class="logo-haut" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-encre.svg" alt="" />
+  <div class="txt">
+    <h2>Votre site devrait<br /><span>vous ramener des clients.</span></h2>
+    <p>Refonte, création et sur-mesure : on refait les sites des entreprises pour qu'ils vendent.</p>
+    <div class="rangee"><span class="pastille noire">oculot.studio ↗</span><span class="pastille contour">Audit gratuit</span></div>
+  </div>
+  <div class="pile"><div class="fen arriere" style="left:1196px;top:22px;width:430px"><div class="barre"><i></i><i></i><i></i><span>oculot.studio</span></div><img src="media/oculot-desktop.webp" /></div><div class="fen arriere" style="left:1124px;top:74px;width:430px"><div class="barre"><i></i><i></i><i></i><span>studiopompom.fr</span></div><img src="media/pompom-desktop.webp" /></div><div class="fen " style="left:1046px;top:132px;width:450px"><div class="barre"><i></i><i></i><i></i><span>blancimmobilier.fr</span></div><img src="media/blanc-desktop.webp" /></div></div><div class="note" style="left:952px;top:52px">sur mesure <svg viewBox="0 0 100 100"><path d="M50 3c4 20 9 33 17 40s17 9 30 7c-13 3-22 7-29 14s-12 21-18 33c-4-13-9-25-17-32S14 54 3 50c12-2 22-5 29-12S46 21 50 3Z" fill="#d71921"/></svg></div>
+</section>
+
+<!-- 3 -->
+<section class="b b3 trame-s" id="b3">
+  <img class="logo-haut" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-creme.svg" alt="" />
+  <div class="txt">
+    <h2>Un site qui vend.<br /><span>Une IA qui fait gagner du temps.</span></h2>
+    <p>Oculot Studio modernise les entreprises : site, logiciels métier et automatisations IA, sur mesure.</p>
+    <div class="rangee" style="margin-top:22px"><span class="pastille blanche">oculot.studio ↗</span><span class="pastille contour-s">Parlons de votre projet</span></div>
+  </div>
+  <div class="carte">
+    <div class="tete"><span class="mono" style="color:rgba(255,255,255,.55)">Ce qu'on fait</span><span class="mono" style="color:rgba(255,255,255,.55)">oculot.studio</span></div>
+    <div class="ligne"><span class="mono">01</span><span>Sites & refontes</span><span class="etat">Vendre</span></div>
+    <div class="ligne"><span class="mono">02</span><span>Logiciels sur mesure</span><span class="etat">Organiser</span></div>
+    <div class="ligne"><span class="mono">03</span><span>Automatisations IA</span><span class="etat">Gagner du temps</span></div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="b b4" id="b4" style="background-image:url(../../../Documents/ChatGPT/portfolio/public/media/nuit.jpg)">
+  <div class="etoiles"></div>
+  <div class="txt">
+    <div class="mono" style="color:rgba(255,255,255,.75);margin-bottom:22px">Studio web · Aix-en-Provence</div>
+    <img class="logo" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-creme.svg" alt="Oculot" />
+    <p>Des sites qui vendent, des outils qui font gagner du temps.</p>
+    <div class="rangee"><span class="pastille blanche">oculot.studio ↗</span><span class="pastille verre">Sites · Logiciels · IA</span></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="b b5 trame" id="b5">
+  <img class="logo-haut" src="../../../Documents/ChatGPT/portfolio/public/media/oculot-logo-complet-encre.svg" alt="" />
+  <div class="txt">
+    <div class="mono" style="color:var(--gris);margin-bottom:16px">Sites réalisés</div>
+    <h2>Ils ont un site<br /><span>qui leur ressemble.</span></h2>
+    <div class="rangee"><span class="pastille noire">oculot.studio ↗</span></div>
+  </div>
+  <div class="site" style="left:820px;width:230px"><div class="nav"><div class="barre"><i></i><i></i><i></i><span>parentez²</span></div><div class="vue"><img src="media/parentez-desktop.webp" /></div></div><div class="leg"><b>Parentez²</b><span class="mono">Architecture</span></div></div>
+  <div class="site" style="left:1066px;width:230px"><div class="nav"><div class="barre"><i></i><i></i><i></i><span>studiopompom.fr</span></div><div class="vue"><img src="../../../Documents/ChatGPT/portfolio/public/media/oculot/pompom.webp" /></div></div><div class="leg"><b>Studio POMPOM</b><span class="mono">Intérieur</span></div></div>
+  <div class="site" style="left:1312px;width:230px"><div class="nav"><div class="barre"><i></i><i></i><i></i><span>nulll.club</span></div><div class="vue"><img src="../../../Documents/ChatGPT/portfolio/public/media/oculot/nulll.webp" /></div></div><div class="leg"><b>NULLL.CLUB</b><span class="mono">Run club</span></div></div>
+</section>
+
+<script>
+  const e = document.querySelector('.b4 .etoiles');
+  let s = 7; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 80; i++) {
+    const d = document.createElement('i'); const t = [1.6, 2, 2.6][Math.floor(r() * 3)];
+    d.style.cssText = `position:absolute;left:${r() * 1584}px;top:${r() * 250}px;width:${t}px;height:${t}px;border-radius:50%;background:#fff;opacity:${.3 + r() * .6}`;
+    e.appendChild(d);
+  }
+  function pixels(sec, coin, w, h, pal, seed) {
+    let z = seed; const rr = () => (z = (z * 9301 + 49297) % 233280) / 233280;
+    const c = Math.ceil(w / 22), l = Math.ceil(h / 22);
+    const g = document.createElement('div'); g.className = 'px'; g.style.setProperty('--c', c);
+    g.style[coin.includes('d') ? 'right' : 'left'] = 0; g.style[coin[0] === 'b' ? 'bottom' : 'top'] = 0;
+    for (let j = 0; j < l; j++) for (let i = 0; i < c; i++) {
+      const fx = coin.includes('d') ? (c - 1 - i) / c : i / c, fy = coin[0] === 'b' ? (l - 1 - j) / l : j / l;
+      const p = 1 - (fx / .5 + fy / .55); const k = document.createElement('i');
+      if (p > 0 && rr() < p * 1.25) k.style.background = pal[Math.floor(rr() * pal.length)];
+      g.appendChild(k);
+    }
+    document.getElementById(sec).appendChild(g);
+  }
+  pixels('b1', 'bd', 240, 120, ['#0c0c0b', '#232321', '#2f2e2b'], 3);
+  pixels('b3', 'bd', 240, 110, ['#0c0c0b', '#232321', '#2f2e2b'], 9);
+  pixels('b4', 'hd', 260, 120, ['#0c0c0b', '#0c0c0b', '#1d1d1b'], 11);
+  pixels('b5', 'bd', 200, 88, ['#0c0c0b', '#2b2a27', '#5d5b56', '#cfcdc7'], 13);
+  if (location.hash === '#guide') document.body.classList.add('guide');
+</script>
+</body>
+</html>
