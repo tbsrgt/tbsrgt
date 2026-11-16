@@ -371,7 +371,6 @@ def hero():
     p2, w2 = pill(0, 0, "Plugins & MCP gratuits", "verre")
     gx = cx - (w1 + 10 + w2) / 2
     boutons = (f'<g class="fade" style="animation-delay:1s">'
-               f'<rect class="onde" x="{gx:.1f}" y="440" width="{w1:.1f}" height="40" rx="20" fill="none" stroke="#fff" stroke-width="1.5"/>'
                f'<g transform="translate({gx:.1f} 440)">{p1}</g>'
                f'<g transform="translate({gx + w1 + 10:.1f} 440)">{p2}</g></g>')
     haut = mono(cx, 196, "Entrepreneur · Aix-en-Provence", "rgba(255,255,255,.75)", "middle")
@@ -457,8 +456,7 @@ TH = 600
 
 def oculot():
     iw, ih = TW - 2 * M, TH - 2 * M
-    logo = image(iw / 2 - 170, 150, 340, 120, img_data(MEDIA / "oculot-logo-complet-creme.svg"), "meet",
-                 'class="bob"')
+    logo = image(iw / 2 - 170, 150, 340, 120, img_data(MEDIA / "oculot-logo-complet-creme.svg"), "meet")
     leg = legende(iw / 2, 372, "Studio web · Actif", "Oculot Studio",
                   "Un studio de refonte de sites internet, monté à trois avec Tom et Eliott.",
                   ("oculot.studio ↗", "contour-sombre"), True, 420)
@@ -602,7 +600,7 @@ def depot(i):
 def suivre():
     h = 520
     iw, ih = W - 2 * M, h - 2 * M
-    ic = f'<g class="court">{points("coureur", iw / 2, 112, 6.2, ENCRE, 2.3, anim=True)}</g>'
+    ic = points("coureur", iw / 2, 112, 6.2, ENCRE, 2.3, anim=True)
     t = (f'<g class="fade" style="animation-delay:.2s">'
          + mono(iw / 2, 196, "Restons en contact", GRIS, "middle")
          + text(iw / 2, 272, "Suivez la suite.", "IS5", 76, ENCRE, "middle", -0.048)
@@ -614,7 +612,6 @@ def suivre():
     p3, w3 = pill(0, 0, "Portfolio ↗", "contour-clair", 15, 46)
     gx = iw / 2 - (w1 + w2 + w3 + 20) / 2
     b = (f'<g class="fade" style="animation-delay:.45s">'
-         f'<rect class="onde" x="{gx:.1f}" y="392" width="{w1:.1f}" height="46" rx="23" fill="none" stroke="{ENCRE}" stroke-width="1.5"/>'
          f'<g transform="translate({gx:.1f} 392)">{p1}</g>'
          f'<g transform="translate({gx + w1 + 10:.1f} 392)">{p2}</g>'
          f'<g transform="translate({gx + w1 + w2 + 20:.1f} 392)">{p3}</g></g>')
