@@ -206,7 +206,7 @@ MOTIFS = {
 }
 
 
-def points(nom, cx, cy, pas, fill, r=None, anim=False):
+def points(nom, cx, cy, pas, fill, r=None, anim=False, vague=False):
     """Icône en points, centrée sur (cx, cy). anim : les points s'allument un à un."""
     m = MOTIFS[nom]
     rows, cols = len(m), len(m[0])
@@ -219,6 +219,8 @@ def points(nom, cx, cy, pas, fill, r=None, anim=False):
                 x = cx + (i - (cols - 1) / 2) * pas
                 y = cy + (j - (rows - 1) / 2) * pas
                 st = f' class="led" style="animation-delay:{.25 + k * .018:.2f}s"' if anim else ""
+                if vague:
+                    st = f' class="vague" style="animation-delay:{i * .12 + j * .05:.2f}s"'
                 out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{fill}"{st}/>')
                 k += 1
     return "".join(out)
@@ -282,6 +284,18 @@ CSS = """
 @keyframes led{from{opacity:0}}
 .bob{transform-box:fill-box;transform-origin:center;animation:bob 5s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-10px)}}
+.zoom{transform-box:fill-box;transform-origin:center;animation:zoom 20s ease-in-out infinite alternate}
+@keyframes zoom{to{transform:scale(1.07)}}
+.flotte{transform-box:fill-box;transform-origin:center;animation:flotte 4.5s ease-in-out infinite}
+@keyframes flotte{50%{transform:translateY(-6px)}}
+.vague{animation:vague 3.2s ease-in-out infinite}
+@keyframes vague{0%,60%,100%{opacity:1}30%{opacity:.25}}
+.onde{transform-box:fill-box;transform-origin:center;animation:onde 2.6s cubic-bezier(.22,1,.36,1) infinite}
+@keyframes onde{from{opacity:.55;transform:scale(1)}to{opacity:0;transform:scale(1.35,1.6)}}
+.halo{animation:halo 6s ease-in-out infinite}
+@keyframes halo{50%{opacity:.35}}
+.court{animation:court 1.2s steps(2) infinite}
+@keyframes court{50%{transform:translateX(3px)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 """
 
@@ -332,7 +346,7 @@ W = 1200
 def hero():
     h = 620
     iw, ih = W - 2 * M, h - 2 * M
-    fond = image(0, 0, iw, ih, img_data(MEDIA / "nuit.jpg", 1400, 72, sombre=.55))
+    fond = image(0, 0, iw, ih, img_data(MEDIA / "nuit.jpg", 1400, 72, sombre=.55), extra='class="zoom"')
     voile = (f'<rect width="{iw}" height="{ih}" fill="url(#voile)"/>')
     rnd = random.Random(7)
     etoiles = "".join(
@@ -354,9 +368,10 @@ def hero():
             + text(cx, 404, "avec NULLL.CLUB et je construis des logiciels créatifs avec Ooone.", "IS4", 19, "rgba(255,255,255,.85)", "middle")
             + "</g>")
     p1, w1 = pill(0, 0, "Suivre sur GitHub", "blanche", icon="plus")
-    p2, w2 = pill(0, 0, "Voir les projets", "verre")
+    p2, w2 = pill(0, 0, "Plugins & MCP gratuits", "verre")
     gx = cx - (w1 + 10 + w2) / 2
     boutons = (f'<g class="fade" style="animation-delay:1s">'
+               f'<rect class="onde" x="{gx:.1f}" y="440" width="{w1:.1f}" height="40" rx="20" fill="none" stroke="#fff" stroke-width="1.5"/>'
                f'<g transform="translate({gx:.1f} 440)">{p1}</g>'
                f'<g transform="translate({gx + w1 + 10:.1f} 440)">{p2}</g></g>')
     haut = mono(cx, 196, "Entrepreneur · Aix-en-Provence", "rgba(255,255,255,.75)", "middle")
@@ -423,7 +438,7 @@ def intro():
                     inner = (f'<rect x="{vx}" y="{vy}" width="{vw}" height="{vh}" rx="9" fill="{ENCRE}"/>'
                              + points(val, vx + vw / 2, vy + vh / 2, 3.6, CREME, 1.3))
                 out.append(f'<clipPath id="{clip}"><rect x="{vx}" y="{vy}" width="{vw}" height="{vh}" rx="9"/></clipPath>')
-                seg.append(f'<g clip-path="url(#{clip})">{inner}</g>')
+                seg.append(f'<g class="flotte" style="animation-delay:{j * .6:.1f}s"><g clip-path="url(#{clip})">{inner}</g></g>')
                 x = vx + vw + 6
                 seg.append(text(x, y, "}", "IS4", size, "#a3a099"))
                 x += acc
@@ -447,12 +462,45 @@ def oculot():
     leg = legende(iw / 2, 372, "Studio web · Actif", "Oculot Studio",
                   "Un studio de refonte de sites internet, monté à trois avec Tom et Eliott.",
                   ("oculot.studio ↗", "contour-sombre"), True, 420)
-    return tile(TW, TH, logo + leg, SOMBRE, motif="rgba(255,255,255,.13)", bordure="rgba(255,255,255,.08)")
+    px = pixels(0, 0, 200, 130, "hg", 21, [CADRE, "#232321", "#2f2e2b"], 22)
+    return tile(TW, TH, px + logo + leg, SOMBRE, motif="rgba(255,255,255,.13)", bordure="rgba(255,255,255,.08)")
+
+
+def sites():
+    iw, ih = TW - 2 * M, TH - 2 * M
+    defs, css, body = [], [], []
+    # MacBook
+    sx, sy, sw, sh = 46, 58, 404, 252
+    pw = img_data(ROOT.parent / "Documents/ChatGPT/portfolio/public/media/oculot/pompom.webp", 808, 74)
+    ph_img = round(sw * 3750 / 1200)
+    defs.append(f'<clipPath id="ecran"><rect x="{sx}" y="{sy}" width="{sw}" height="{sh}" rx="6"/></clipPath>')
+    css.append(f".dmac{{animation:dmac 22s ease-in-out infinite alternate}}@keyframes dmac{{0%,8%{{transform:translateY(0)}}92%,100%{{transform:translateY(-{ph_img - sh}px)}}}}")
+    body.append(f'<g class="flotte" style="animation-duration:7s">'
+                f'<rect x="{sx - 10}" y="{sy - 10}" width="{sw + 20}" height="{sh + 26}" rx="16" fill="#0d0d0d" stroke="#767a7d" stroke-width="1.5"/>'
+                f'<g clip-path="url(#ecran)"><g class="dmac">{image(sx, sy, sw, ph_img, pw, "meet")}</g></g>'
+                f'<rect x="{sx + sw / 2 - 26}" y="{sy - 10}" width="52" height="9" rx="4" fill="#0d0d0d"/>'
+                f'<path d="M{sx - 34} {sy + sh + 16} h{sw + 68} l-10 12 h-{sw + 48} z" fill="#83878a"/>'
+                f'<rect x="{sx + sw / 2 - 40}" y="{sy + sh + 16}" width="80" height="5" rx="2.5" fill="#6a6d70"/></g>')
+    # iPhone
+    tx, ty, tw, th = 404, 128, 132, 272
+    nw = img_data(ROOT.parent / "Documents/ChatGPT/portfolio/public/media/oculot/nulll-m.webp", 264, 76)
+    nh = round((tw - 12) * 8440 / 780)
+    defs.append(f'<clipPath id="tel"><rect x="{tx + 6}" y="{ty + 6}" width="{tw - 12}" height="{th - 12}" rx="20"/></clipPath>')
+    css.append(f".dtel{{animation:dtel 28s ease-in-out infinite alternate;animation-delay:-6s}}@keyframes dtel{{0%,8%{{transform:translateY(0)}}92%,100%{{transform:translateY(-{nh - th + 12}px)}}}}")
+    body.append(f'<g class="flotte" style="animation-duration:6s;animation-delay:-2s">'
+                f'<rect x="{tx}" y="{ty}" width="{tw}" height="{th}" rx="26" fill="#010101" stroke="#342c3f" stroke-width="2"/>'
+                f'<g clip-path="url(#tel)"><g class="dtel">{image(tx + 6, ty + 6, tw - 12, nh, nw, "meet")}</g></g>'
+                f'<rect x="{tx + tw / 2 - 20}" y="{ty + 14}" width="40" height="12" rx="6" fill="#010101"/></g>')
+    leg = (f'<g class="fade" style="animation-delay:.3s">'
+           + mono(iw / 2, 456, "Sites réalisés par le studio", GRIS, "middle")
+           + text(iw / 2, 500, "Studio POMPOM, NULLL.CLUB", "IS5", 30, ENCRE, "middle", -0.035)
+           + pill(iw / 2, 522, "Voir le studio ↗", "noire", anchor="middle")[0] + "</g>")
+    return tile(TW, TH, "".join(body) + leg, CLAIR, motif="rgba(0,0,0,.2)", defs="".join(defs), css="".join(css))
 
 
 def nulll():
     iw, ih = TW - 2 * M, TH - 2 * M
-    photo = image(0, 0, iw, ih, img_data(MEDIA / "nulll-apres-course-hd.webp", 900, 78))
+    photo = image(0, 0, iw, ih, img_data(MEDIA / "nulll-apres-course-hd.webp", 900, 78), extra='class="zoom"')
     voile = f'<rect width="{iw}" height="{ih}" fill="url(#bas)"/>'
     logo_d = img_data(MEDIA / "nulll-logo-creme.png", 600, fmt="PNG")
     logo = image(36, ih - 222, 330, 64, logo_d, "meet", 'preserveAspectRatio="xMinYMid meet"')
@@ -474,12 +522,15 @@ def ooone():
     iw, ih = TW - 2 * M, TH - 2 * M
     ic = img_data(MEDIA / "icones/ooone.webp", 500, fmt="PNG")
     ombre = (f'<ellipse cx="{iw / 2}" cy="318" rx="110" ry="14" fill="#000" opacity=".12" filter="url(#flou)"/>')
+    halo = f'<circle class="halo" cx="{iw / 2}" cy="190" r="150" fill="url(#lueur)"/>'
     icone = f'<g class="bob">{image(iw / 2 - 120, 70, 240, 240, ic, "meet")}</g>'
     leg = legende(iw / 2, 378, "Logiciels créatifs · Bêta fermée", "Ooone",
                   "Une suite créative complète : photo, retouche, design, rendu d'architecture, vidéo et 3D.",
                   ("Suivre la bêta ↗", "noire"), False, 420)
     defs = '<filter id="flou"><feGaussianBlur stdDeviation="8"/></filter>'
-    return tile(TW, TH, ombre + icone + leg, CLAIR, defs=defs)
+    defs += ('<radialGradient id="lueur"><stop offset="0" stop-color="#c04ee0" stop-opacity=".28"/>'
+             '<stop offset=".6" stop-color="#e9a04a" stop-opacity=".1"/><stop offset="1" stop-color="#e9a04a" stop-opacity="0"/></radialGradient>')
+    return tile(TW, TH, halo + ombre + icone + leg, CLAIR, defs=defs)
 
 
 def apps():
@@ -494,7 +545,7 @@ def apps():
         cy = 118 + (k // 3) * gy
         d = img_data(MEDIA / f"icones/{f}.webp", 200, fmt="PNG")
         out.append(f'<g class="fade" style="animation-delay:{.15 + k * .09:.2f}s">'
-                   + image(cx - s / 2, cy - s / 2, s, s, d, "meet")
+                   + f'<g class="flotte" style="animation-delay:{k * .45:.2f}s">' + image(cx - s / 2, cy - s / 2, s, s, d, "meet") + "</g>"
                    + mono(cx, cy + s / 2 + 22, nom, BLANC, "middle", 11)
                    + mono(cx, cy + s / 2 + 40, etat, GRIS_SOMBRE, "middle", 11) + "</g>")
     leg = (f'<g class="fade" style="animation-delay:.6s">'
@@ -509,25 +560,27 @@ def opensource_tete():
     h = 300
     iw, ih = W - 2 * M, h - 2 * M
     t = (f'<g class="fade">'
-         + mono(40, 70, "Open source · GitHub", "rgba(255,255,255,.6)")
-         + text(38, 140, "Des outils libres, pour tout le monde.", "IS5", 52, BLANC, ls=-0.04)
-         + text(40, 188, "Plugins Claude Code, serveurs MCP et logiciels : je publie ce que", "IS4", 18, "rgba(255,255,255,.7)")
-         + text(40, 214, "je fabrique en chemin. Une étoile sur un dépôt m'aide à continuer.", "IS4", 18, "rgba(255,255,255,.7)")
+         + mono(40, 70, "Gratuit · Open source · Sans clé API", "rgba(255,255,255,.6)")
+         + text(38, 140, "Plugins et MCP gratuits, pour tout le monde.", "IS5", 50, BLANC, ls=-0.04)
+         + text(40, 188, "Plugins Claude Code et serveurs MCP que je fabrique en chemin, libres et prêts", "IS4", 18, "rgba(255,255,255,.7)")
+         + text(40, 214, "à installer en une commande. Une étoile sur un dépôt m'aide à continuer.", "IS4", 18, "rgba(255,255,255,.7)")
          + "</g>")
     p, w = pill(iw - 40, 186, "Mettre une étoile", "blanche", anchor="end", icon="etoile")
-    ic = points("losange", iw - 90, 92, 7, CREME, 2.4, anim=True)
+    ic = points("losange", iw - 90, 92, 7, CREME, 2.4, vague=True)
     return tile(W, h, t + f'<g class="fade" style="animation-delay:.4s">{p}</g>' + ic, SOMBRE,
                 motif="rgba(255,255,255,.13)", bordure="rgba(255,255,255,.08)")
 
 
-DEPOTS = [
+DEPOTS_MUE = [
     ("mue", "Outil", "fleche", "Réécrit du COBOL en Java et prouve que les deux donnent exactement les mêmes résultats.",
      "TypeScript", "#3178c6", "AGPL-3.0"),
+]
+DEPOTS = [
     ("france-mcp", "Serveur MCP", "calques", "L'État français branché sur l'IA : Sirene, BOAMP, DVF, cadastre, DPE… 19 outils, zéro clé API.",
      "JavaScript", "#f1e05a", "MIT"),
     ("claude-ovh-dns", "Plugin Claude Code", "losange", "Pointez un domaine OVH vers Vercel en trois commandes, sans jamais casser vos e-mails.",
      "Python", "#3572A5", "MIT"),
-]
+] + DEPOTS_MUE
 
 
 def depot(i):
@@ -535,7 +588,7 @@ def depot(i):
     w, h = 400, 300
     iw, ih = w - 2 * M, h - 2 * M
     ic = (f'<rect x="28" y="28" width="38" height="38" rx="10" fill="#22221f"/>'
-          + points(motif, 47, 47, 3.4, CREME, 1.2))
+          + points(motif, 47, 47, 3.4, CREME, 1.2, vague=True))
     body = (ic + mono(80, 52, kind, "rgba(255,255,255,.75)")
             + text(28, 116, nom, "JB", 22, BLANC, ls=-0.02)
             + lines(28, 152, desc, "IS4", 15, "rgba(255,255,255,.68)", iw - 56, 22)[0]
@@ -549,7 +602,7 @@ def depot(i):
 def suivre():
     h = 520
     iw, ih = W - 2 * M, h - 2 * M
-    ic = points("coureur", iw / 2, 112, 6.2, ENCRE, 2.3, anim=True)
+    ic = f'<g class="court">{points("coureur", iw / 2, 112, 6.2, ENCRE, 2.3, anim=True)}</g>'
     t = (f'<g class="fade" style="animation-delay:.2s">'
          + mono(iw / 2, 196, "Restons en contact", GRIS, "middle")
          + text(iw / 2, 272, "Suivez la suite.", "IS5", 76, ENCRE, "middle", -0.048)
@@ -561,6 +614,7 @@ def suivre():
     p3, w3 = pill(0, 0, "Portfolio ↗", "contour-clair", 15, 46)
     gx = iw / 2 - (w1 + w2 + w3 + 20) / 2
     b = (f'<g class="fade" style="animation-delay:.45s">'
+         f'<rect class="onde" x="{gx:.1f}" y="392" width="{w1:.1f}" height="46" rx="23" fill="none" stroke="{ENCRE}" stroke-width="1.5"/>'
          f'<g transform="translate({gx:.1f} 392)">{p1}</g>'
          f'<g transform="translate({gx + w1 + 10:.1f} 392)">{p2}</g>'
          f'<g transform="translate({gx + w1 + w2 + 20:.1f} 392)">{p3}</g></g>')
@@ -591,7 +645,7 @@ def main():
     OUT.mkdir(exist_ok=True)
     for old in OUT.glob("*.svg"):
         old.unlink()
-    tuiles = {"hero": hero, "intro": intro, "oculot": oculot, "nulll": nulll, "ooone": ooone, "apps": apps,
+    tuiles = {"hero": hero, "intro": intro, "oculot": oculot, "sites": sites, "nulll": nulll, "ooone": ooone,
               "opensource": opensource_tete, "suivre": suivre}
     for nom, fn in tuiles.items():
         (OUT / f"{nom}.svg").write_text(fn())
