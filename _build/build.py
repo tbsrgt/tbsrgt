@@ -653,8 +653,22 @@ def main():
         (OUT / f"depot-{d[0]}.svg").write_text(depot(i))
     for nom, (label, style, icon) in BOUTONS.items():
         (OUT / f"{nom}.svg").write_text(bouton(label, style, icon))
+    # Noms suffixés par l'empreinte du contenu : GitHub met les images en cache,
+    # un nouveau nom force l'affichage de la nouvelle version.
+    import hashlib
+    import re
+    noms = {}
     for p in sorted(OUT.glob("*.svg")):
-        print(f"{p.name:26} {p.stat().st_size / 1024:7.1f} Ko")
+        h = hashlib.sha1(p.read_bytes()).hexdigest()[:8]
+        cible = OUT / f"{p.stem}-{h}.svg"
+        p.rename(cible)
+        noms[p.stem] = cible.name
+        print(f"{cible.name:34} {cible.stat().st_size / 1024:7.1f} Ko")
+    readme = ROOT / "README.md"
+    txt = readme.read_text()
+    txt = re.sub(r"\./assets/([a-z-]+?)(?:-[0-9a-f]{8})?\.svg(?:\?v=\d+)?",
+                 lambda m: f"./assets/{noms[m.group(1)]}", txt)
+    readme.write_text(txt)
 
 
 if __name__ == "__main__":
